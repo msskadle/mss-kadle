@@ -1,0 +1,10 @@
+{
+  "name": "Shree Mahaganapati Seva Sangha",
+  "short_name": "MSS Kadle",
+  "start_url": "./app.html",
+  "display": "standalone",
+  "background_color": "#1a2a5e",
+  "theme_color": "#d4621a",
+  "orientation": "portrait",
+  "icons": []
+}
