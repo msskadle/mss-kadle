@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17234f">
+<meta name="robots" content="noindex">
+<title>ಮತದಾನ · Vote — Shree Mahaganapati Seva Sangha (R.)</title>
+<link rel="icon" href="mss-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;600;700;800&family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--nv:#17234f;--or:#bf5410;--gold:#c8962e;--gold-2:#e8c46a;--maroon:#8a1c1c;--cream:#fbf7f0;--txt:#14161f;--sub:#4f5566;--line:#efe5d3;--field:#8b90a0;--green:#157a42;--red:#c8352c;
+  --ease:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+html,body{min-height:100%;font-family:'Inter','Noto Sans Kannada',system-ui,sans-serif;color:var(--txt);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{background:linear-gradient(180deg,rgba(12,18,45,.55),rgba(12,18,45,.8) 40%,rgba(12,18,45,.96)),url('mandira-bg.jpg') center/cover fixed,var(--nv);}
+.kn{font-family:'Noto Sans Kannada',sans-serif}
+button,input{font:inherit;color:inherit}
+:focus{outline:none}:focus-visible{outline:3px solid var(--nv);outline-offset:2px}
+header :focus-visible{outline-color:#fff}
+.wrap{max-width:480px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 1.5rem) 1rem calc(2rem + env(safe-area-inset-bottom,0px));}
+header{text-align:center;color:#fff;margin-bottom:1.25rem;animation:rise .7s var(--ease) both}
+.logo{width:76px;height:76px;border-radius:50%;background:#fff;padding:5px;border:3px solid var(--gold-2);box-shadow:0 0 0 8px rgba(232,196,106,.16),0 10px 28px rgba(0,0,0,.4);margin:0 auto .8rem;overflow:hidden;animation:float 5s ease-in-out infinite}
+.logo img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.org-kn{font-family:'Noto Sans Kannada',sans-serif;font-weight:800;font-size:1.2rem;line-height:1.35}
+.org-en{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);margin-top:.15rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:.9rem;padding:.35rem .9rem;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);font-size:.82rem;font-weight:700}
+.card{background:#fff;border-radius:20px;padding:1.4rem 1.25rem;box-shadow:0 14px 40px rgba(0,0,0,.28);border:1px solid rgba(232,196,106,.5);animation:rise .6s var(--ease) .1s both}
+.step{animation:rise .45s var(--ease) both}
+.subject{font-family:'Noto Sans Kannada','Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--nv);line-height:1.35}
+.subject-en{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;color:var(--maroon);margin-top:.15rem}
+.details{font-size:.9rem;color:var(--sub);margin-top:.6rem;white-space:pre-line;line-height:1.6}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:1.1rem 0}
+label.fl{display:block;font-weight:700;font-size:.92rem;margin-bottom:.4rem}
+label.fl .kn{font-weight:500;color:var(--sub)}
+.field{display:flex;align-items:center;border:1.5px solid var(--field);border-radius:12px;overflow:hidden;background:#fff;transition:border-color .15s,box-shadow .15s}
+.field:focus-within{border-color:var(--nv);box-shadow:0 0 0 3px rgba(23,35,79,.18)}
+.field span{flex-shrink:0;white-space:nowrap;padding:0 .85rem;font-weight:800;font-size:1.15rem;color:var(--nv);gap:.35rem;border-right:1px solid #e4e6ec;align-self:stretch;display:flex;align-items:center;background:#faf7f1}
+.field input{flex:1;min-width:0;width:100%;border:none;min-height:52px;padding:.7rem .9rem;font-size:1.25rem;font-weight:700;letter-spacing:.08em;background:transparent;font-variant-numeric:tabular-nums}
+.hint{font-size:.82rem;color:var(--sub);margin-top:.45rem}
+.gap{height:1rem}
+.field .eye{flex-shrink:0;width:52px;align-self:stretch;border:none;border-left:1px solid #e4e6ec;background:#faf7f1;font-size:1.15rem;cursor:pointer}
+#code{letter-spacing:.3em}
+.btn{display:block;width:100%;min-height:52px;margin-top:1.1rem;border:none;border-radius:14px;color:#fff;font-weight:800;font-size:1rem;cursor:pointer;
+  background:linear-gradient(135deg,#c75e14,var(--or) 55%,#9c430b);box-shadow:0 6px 18px rgba(191,84,16,.3);position:relative;overflow:hidden;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.navy{background:linear-gradient(135deg,#243a7a,var(--nv));box-shadow:0 6px 18px rgba(23,35,79,.3)}
+.msg{display:none;margin-top:.9rem;padding:.75rem .9rem;border-radius:12px;font-size:.9rem;line-height:1.5}
+.msg.show{display:block;animation:shake .4s ease both}
+.msg.err{background:#fdecea;color:#a3271f}
+.msg.ok{background:#e8f5e9;color:var(--green);animation:none}
+.hello{background:#f6f1e6;border-radius:12px;padding:.7rem .9rem;font-weight:700;color:var(--nv);display:flex;align-items:center;gap:.5rem;margin-bottom:1rem}
+.anon{font-size:.82rem;color:var(--sub);margin-bottom:1rem;display:flex;gap:.4rem}
+.item{margin-bottom:1rem;animation:rise .45s var(--ease) both}
+.item-name{font-weight:800;font-size:1rem;margin-bottom:.4rem}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.choice{min-height:56px;border:2px solid #dcd6ca;background:#fff;border-radius:12px;font-weight:700;font-size:.88rem;line-height:1.25;cursor:pointer;transition:all .2s var(--spring);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem}
+.choice .e{font-size:1.15rem}
+.choice[aria-pressed="true"]{transform:scale(1.04)}
+.choice.yes[aria-pressed="true"]{border-color:var(--green);background:#eafaf1;color:var(--green)}
+.choice.no[aria-pressed="true"]{border-color:var(--red);background:#fdecea;color:var(--red)}
+.choice.abstain[aria-pressed="true"]{border-color:#9a6b12;background:#fdf6e3;color:#8a5d0a}
+.done{text-align:center;padding:.5rem 0 .25rem}
+.tick{width:92px;height:92px;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#1f9d55,var(--green));display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(21,122,66,.12);animation:pop .6s var(--spring) both}
+.tick svg{width:48px;height:48px;stroke:#fff;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s ease .35s forwards}
+.done h2{font-family:'Noto Sans Kannada',sans-serif;font-size:1.35rem;color:var(--nv)}
+.done p{color:var(--sub);margin-top:.3rem}
+.tagline{text-align:center;margin-top:1.4rem;font-family:'Noto Sans Kannada',sans-serif;font-weight:800;font-size:1.05rem;color:#fff}
+.tagline span{display:inline-block;opacity:0;transform:translateY(10px);animation:rise .6s var(--spring) forwards;color:var(--gold-2)}
+.tagline span:nth-child(2){animation-delay:.15s}.tagline span:nth-child(3){animation-delay:.3s}
+.foot{text-align:center;color:rgba(255,255,255,.75);font-size:.78rem;margin-top:.8rem}
+.spinner{width:40px;height:40px;border:4px solid #e4e6ec;border-top-color:var(--or);border-radius:50%;animation:spin .8s linear infinite;margin:1.5rem auto}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:ripple .6s linear;pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-5px)}}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.tagline span{opacity:1;transform:none}.tick svg{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><img src="mss-logo.png" alt="Shree Mahaganapati Seva Sangha logo"></div>
+    <div class="org-kn">ಶ್ರೀ ಮಹಾಗಣಪತಿ ಸೇವಾ ಸಂಘ (ರಿ.)</div>
+    <div class="org-en" lang="en">Shree Mahaganapati Seva Sangha (R.)</div>
+    <div class="badge">🗳️ <span>ಮತದಾನ</span> <span lang="en">· Member Voting</span></div>
+  </header>
+
+  <main class="card" id="card" aria-live="polite">
+    <div class="spinner" role="status" aria-label="Loading"></div>
+  </main>
+
+  <div class="tagline" aria-label="ಸೇವೆಯ ಮೂಲಕ ಏಕತೆ"><span>ಸೇವೆಯ</span> <span>ಮೂಲಕ</span> <span>ಏಕತೆ</span></div>
+  <div class="foot" lang="en">Your vote is anonymous · ನಿಮ್ಮ ಮತ ಗೌಪ್ಯವಾಗಿರುತ್ತದೆ</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Same Firebase project as the member app (this config is public by design; access is controlled by Firestore rules)
+const firebaseConfig = {
+  apiKey: "AIzaSyB6OwS_FOwW0VGTuBBI20y4kkH3a26xu64",
+  authDomain: "mss-kadle-e328f.firebaseapp.com",
+  projectId: "mss-kadle-e328f",
+  storageBucket: "mss-kadle-e328f.firebasestorage.app",
+  messagingSenderId: "618234353316",
+  appId: "1:618234353316:web:d5b7ca0340cca1a5993831"
+};
+const db = getFirestore(initializeApp(firebaseConfig));
+
+const card = document.getElementById('card');
+const electionId = new URLSearchParams(location.search).get('e') || '';
+const esc = s => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+let election = null, memberId = null, failedTries = 0, lockedUntil = 0;
+
+function show(html) { card.innerHTML = `<div class="step">${html}</div>`; }
+function message(kind, text) {
+  const m = document.getElementById('msg');
+  if (!m) return;
+  m.className = 'msg ' + kind; void m.offsetWidth; m.classList.add('show');
+  m.innerHTML = text;
+}
+function headerHtml() {
+  const kn = election.subjectKn, en = election.subjectEn;
+  return `<div class="subject kn">${esc(kn || en)}</div>
+    ${kn && en ? `<div class="subject-en" lang="en">${esc(en)}</div>` : ''}
+    ${(election.detailsKn || election.detailsEn) ? `<div class="details">${esc([election.detailsKn, election.detailsEn].filter(Boolean).join('\n\n'))}</div>` : ''}
+    <div class="rule"></div>`;
+}
+
+// ---------- Step 0: load the election ----------
+async function start() {
+  if (!electionId) {
+    show(`<div class="done"><h2>ಲಿಂಕ್ ಅಪೂರ್ಣವಾಗಿದೆ</h2><p lang="en">This voting link is incomplete. Please use the full link shared by the association.</p></div>`);
+    return;
+  }
+  try {
+    const snap = await getDoc(doc(db, 'elections', electionId));
+    if (!snap.exists()) {
+      show(`<div class="done"><h2>ಮತದಾನ ಕಂಡುಬಂದಿಲ್ಲ</h2><p lang="en">This vote was not found. It may have been removed.</p></div>`); return;
+    }
+    election = snap.data();
+    if (election.status !== 'open') {
+      show(`${headerHtml()}<div class="done"><h2>ಮತದಾನ ಮುಕ್ತಾಯವಾಗಿದೆ</h2><p lang="en">Voting for this has closed. Results are in the member app.</p></div>`); return;
+    }
+    showMobileStep();
+  } catch (e) {
+    show(`<div class="done"><h2>ಸಂಪರ್ಕ ದೋಷ</h2><p lang="en">Couldn't load the vote. Check your internet and try again.</p>
+      <button class="btn navy" onclick="location.reload()">↻ Try again · ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</button></div>`);
+  }
+}
+
+// ---------- Step 1: confirm membership with mobile number ----------
+function showMobileStep() {
+  show(`${headerHtml()}
+    <form id="mform" novalidate>
+      <label class="fl" for="mobile">Registered mobile number <span class="kn">· ನೋಂದಾಯಿತ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ</span></label>
+      <div class="field"><span aria-hidden="true">🇮🇳 +91</span>
+        <input id="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98XXX XXXXX" aria-label="Mobile number after +91" aria-describedby="mhint" required>
+      </div>
+      <div class="hint" id="mhint">Use the number registered with the association · ಸಂಘದಲ್ಲಿ ನೋಂದಾಯಿಸಿದ ಸಂಖ್ಯೆ</div>
+      <div class="gap"></div>
+      <label class="fl" for="code">Secret voting code <span class="kn">· ಮತದಾನ ರಹಸ್ಯ ಕೋಡ್</span></label>
+      <div class="field"><span aria-hidden="true">🔐</span>
+        <input id="code" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••••" aria-describedby="chint" required>
+        <button type="button" class="eye" id="eye" aria-label="Show code" aria-pressed="false">👁</button>
+      </div>
+      <div class="hint" id="chint">Shown on the Home screen of the member app, or ask the admin · ಆಪ್‌ನ ಮುಖಪುಟದಲ್ಲಿ ಇದೆ</div>
+      <button class="btn" id="mbtn" type="submit">Continue · ಮುಂದುವರಿಸಿ →</button>
+      <div class="msg" id="msg" role="alert"></div>
+    </form>`);
+  const input = document.getElementById('mobile');
+  setTimeout(() => input.focus(), 350);
+  const codeIn = document.getElementById('code'), eye = document.getElementById('eye');
+  codeIn.addEventListener('input', () => { codeIn.value = codeIn.value.replace(/\D/g, '').slice(0, 8); });
+  eye.addEventListener('click', () => {
+    const show = codeIn.type === 'password';
+    codeIn.type = show ? 'text' : 'password';
+    eye.textContent = show ? '🙈' : '👁';
+    eye.setAttribute('aria-pressed', String(show)); eye.setAttribute('aria-label', show ? 'Hide code' : 'Show code');
+  });
+  // +91 is fixed in front: keep only the 10-digit number, spaced as 5 + 5
+  input.addEventListener('input', () => {
+    let d = input.value.replace(/\D/g, '');
+    if (d.length > 10 && d.startsWith('91')) d = d.slice(2);
+    if (d.length > 10 && d.startsWith('0')) d = d.slice(1);
+    d = d.slice(0, 10);
+    input.value = d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d;
+  });
+  document.getElementById('mform').addEventListener('submit', checkMobile);
+}
+
+function normalise(raw) {
+  let d = String(raw).replace(/\D/g, '');
+  if (d.length === 12 && d.startsWith('91')) d = d.slice(2);
+  if (d.length === 11 && d.startsWith('0')) d = d.slice(1);
+  return d;
+}
+
+async function checkMobile(ev) {
+  ev.preventDefault();
+  if (Date.now() < lockedUntil) {
+    message('err', `Too many tries. Please wait ${Math.ceil((lockedUntil - Date.now()) / 1000)} seconds · ಸ್ವಲ್ಪ ಸಮಯ ಕಾಯಿರಿ`); return;
+  }
+  const mobile = normalise(document.getElementById('mobile').value);
+  if (!/^\d{10}$/.test(mobile)) { message('err', 'Enter a 10-digit mobile number · 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ'); return; }
+  const code = document.getElementById('code').value.replace(/\D/g, '');
+  if (!/^\d{4,8}$/.test(code)) { message('err', 'Enter your secret voting code · ರಹಸ್ಯ ಕೋಡ್ ನಮೂದಿಸಿ'); document.getElementById('code').focus(); return; }
+  const btn = document.getElementById('mbtn');
+  btn.disabled = true; btn.textContent = 'Checking… · ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ';
+  try {
+    const snap = await getDoc(doc(db, 'voterRegistry', `${mobile}_${code}`));
+    if (!snap.exists() || !snap.data().memberId) {
+      failedTries++;
+      if (failedTries >= 5) { lockedUntil = Date.now() + 120000; failedTries = 0; }
+      message('err', 'Mobile number and secret code don\'t match our member list. Please check both, or contact the admin: <a href="tel:9880166445">9880166445</a> · ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಅಥವಾ ರಹಸ್ಯ ಕೋಡ್ ತಪ್ಪಾಗಿದೆ');
+      btn.disabled = false; btn.textContent = 'Continue · ಮುಂದುವರಿಸಿ →';
+      return;
+    }
+    memberId = snap.data().memberId;
+    showBallot();
+  } catch (e) {
+    message('err', e.code === 'permission-denied'
+      ? 'Voting by link is not switched on yet. Please tell the admin · ಆಡಮಿನ್ ಅವರಿಗೆ ತಿಳಿಸಿ'
+      : 'Connection problem. Please try again · ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ');
+    btn.disabled = false; btn.textContent = 'Continue · ಮುಂದುವರಿಸಿ →';
+  }
+}
+
+// ---------- Step 2: ballot ----------
+function showBallot() {
+  const cands = Array.isArray(election.candidates) && election.candidates.length ? election.candidates : null;
+  const keys = cands ? cands.map((c, i) => ({ key: 'c' + i, label: c })) : [{ key: 'resolution', label: null }];
+  const group = (k) => `<div class="choices" role="group" aria-label="${esc(k.label || 'Resolution')}" data-key="${k.key}">
+      <button type="button" class="choice yes" aria-pressed="false" data-v="yes"><span class="e" aria-hidden="true">✅</span>Yes<span class="kn">ಹೌದು</span></button>
+      <button type="button" class="choice no" aria-pressed="false" data-v="no"><span class="e" aria-hidden="true">❌</span>No<span class="kn">ಇಲ್ಲ</span></button>
+      <button type="button" class="choice abstain" aria-pressed="false" data-v="abstain"><span class="e" aria-hidden="true">➖</span>Abstain<span class="kn">ಗೈರು</span></button>
+    </div>`;
+  show(`${headerHtml()}
+    <div class="hello">✅ <span>Membership confirmed · ಸದಸ್ಯತ್ವ ದೃಢಪಟ್ಟಿದೆ</span></div>
+    <div class="anon">🔒 <span>Only totals are shown — nobody can see who voted what. · ನಿಮ್ಮ ಮತ ಅನಾಮಧೇಯ</span></div>
+    ${keys.map((k, i) => `<div class="item" style="animation-delay:${0.05 * i}s">${k.label ? `<div class="item-name">${esc(k.label)}</div>` : ''}${group(k)}</div>`).join('')}
+    <button class="btn navy" id="vbtn" type="button">🗳️ Submit vote · ಮತ ಸಲ್ಲಿಸಿ</button>
+    <div class="msg" id="msg" role="alert"></div>`);
+  card.querySelectorAll('.choices').forEach(g => {
+    g.addEventListener('click', e => {
+      const b = e.target.closest('.choice'); if (!b) return;
+      g.querySelectorAll('.choice').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      g.dataset.selected = b.dataset.v;
+    });
+  });
+  document.getElementById('vbtn').addEventListener('click', submitVote);
+  card.querySelector('.choice').focus();
+}
+
+async function submitVote() {
+  const choices = {};
+  for (const g of card.querySelectorAll('.choices')) {
+    if (!g.dataset.selected) { message('err', 'Please choose Yes / No / Abstain for every item · ಎಲ್ಲದಕ್ಕೂ ಆಯ್ಕೆ ಮಾಡಿ'); g.querySelector('.choice').focus(); return; }
+    choices[g.dataset.key] = g.dataset.selected;
+  }
+  if (!confirm('Submit your vote? It cannot be changed afterwards.\nಮತ ಸಲ್ಲಿಸಬೇಕೆ? ನಂತರ ಬದಲಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.')) return;
+  const btn = document.getElementById('vbtn');
+  btn.disabled = true; btn.textContent = 'Submitting… · ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ';
+  try {
+    // Same document id as the member app → one vote per member, app or link.
+    await setDoc(doc(db, 'electionVotes', `${electionId}_${memberId}`), {
+      electionId, choices, votedAt: serverTimestamp(), via: 'link'
+    });
+    showDone();
+  } catch (e) {
+    btn.disabled = false; btn.textContent = '🗳️ Submit vote · ಮತ ಸಲ್ಲಿಸಿ';
+    message('err', e.code === 'permission-denied'
+      ? 'This member has already voted, or voting has just closed. · ಈ ಸದಸ್ಯರು ಈಗಾಗಲೇ ಮತ ಚಲಾಯಿಸಿದ್ದಾರೆ ಅಥವಾ ಮತದಾನ ಮುಕ್ತಾಯವಾಗಿದೆ'
+      : 'Connection problem — your vote was NOT saved. Please try again · ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ');
+  }
+}
+
+function showDone() {
+  show(`<div class="done">
+      <div class="tick"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M14 27 l8 8 l16 -18"/></svg></div>
+      <h2>ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ಮತ ದಾಖಲಾಗಿದೆ</h2>
+      <p lang="en">Thank you — your vote has been recorded.</p>
+      <div class="rule"></div>
+      <div class="subject kn" style="font-size:1rem">${esc(election.subjectKn || election.subjectEn)}</div>
+    </div>`);
+}
+
+// Tap ripple on buttons
+document.addEventListener('pointerdown', e => {
+  const el = e.target.closest('.btn'); if (!el || el.disabled) return;
+  const r = el.getBoundingClientRect(), s = Math.max(r.width, r.height), sp = document.createElement('span');
+  sp.className = 'ripple'; sp.style.cssText = `width:${s}px;height:${s}px;left:${e.clientX - r.left - s / 2}px;top:${e.clientY - r.top - s / 2}px`;
+  el.appendChild(sp); setTimeout(() => sp.remove(), 650);
+}, { passive: true });
+
+start();
+</script>
+</body>
+</html>
