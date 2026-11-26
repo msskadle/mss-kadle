@@ -1,4 +1,5 @@
-const functions = require('firebase-functions');
+// v1 API (works with firebase-functions v4, v5 and v6+)
+const functions = require('firebase-functions/v1');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
@@ -119,4 +120,68 @@ exports.publicSiteData = functions.https.onRequest(async (req, res) => {
     console.error('publicSiteData failed', err);
     return res.status(500).json({ error: 'failed' });
   }
+});
+
+
+// =====================================================================
+// OTP LOGIN SUPPORT
+// Members log in by SMS OTP with their mobile number. For OTP to open the
+// member's EXISTING account (same data, payments, roles), that account must
+// carry their phone number. These functions keep it in sync.
+// =====================================================================
+
+// Puts +91<mobile> on the member's login. Returns 'ok' | 'conflict' | 'skipped'.
+async function setPhone(uid, mobile) {
+  mobile = String(mobile || '').replace(/\D/g, '').slice(-10);
+  if (!/^[6-9]\d{9}$/.test(mobile)) return 'skipped';
+  const phone = '+91' + mobile;
+  let user;
+  try { user = await admin.auth().getUser(uid); } catch (e) { return 'skipped'; } // e.g. name-only member, no login yet
+  if (user.phoneNumber === phone) return 'ok';
+  try {
+    const other = await admin.auth().getUserByPhoneNumber(phone);
+    if (other.uid !== uid) {
+      const otherDoc = await db.collection('members').doc(other.uid).get();
+      if (otherDoc.exists) {
+        console.warn(`Mobile ${mobile} is used by two members: ${other.uid} and ${uid}`);
+        return 'conflict';
+      }
+      // stray/abandoned login holding this number (e.g. old login after a mobile change) → free it
+      await admin.auth().updateUser(other.uid, { phoneNumber: null });
+    }
+  } catch (e) {
+    if (e.code !== 'auth/user-not-found') throw e;
+  }
+  await admin.auth().updateUser(uid, { phoneNumber: phone });
+  return 'ok';
+}
+
+// Runs automatically whenever a member is added or their mobile number changes.
+exports.onMemberMobileChange = functions.firestore.document('members/{uid}').onWrite(async (change, context) => {
+  if (!change.after.exists) return null;
+  const after = change.after.data();
+  const before = change.before.exists ? change.before.data() : null;
+  if (before && before.mobile === after.mobile) return null; // e.g. lastLogin update — nothing to do
+  try { await setPhone(context.params.uid, after.mobile); } catch (e) { console.error('onMemberMobileChange', e); }
+  return null;
+});
+
+// Called by the app after a member logs in with their password.
+exports.linkMyPhone = functions.https.onCall(async (data, context) => {
+  if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be signed in.');
+  const snap = await db.collection('members').doc(context.auth.uid).get();
+  if (!snap.exists) return { status: 'no-member' };
+  return { status: await setPhone(context.auth.uid, snap.data().mobile) };
+});
+
+// Admin-only: link ALL members' numbers at once (the app runs this when an admin logs in).
+exports.syncMemberPhones = functions.runWith({ timeoutSeconds: 300 }).https.onCall(async (data, context) => {
+  await requireAdmin(context);
+  const snap = await db.collection('members').get();
+  const result = { ok: 0, conflict: 0, skipped: 0 };
+  for (const d of snap.docs) {
+    try { result[await setPhone(d.id, d.data().mobile)]++; }
+    catch (e) { console.error('sync', d.id, e.message); result.skipped++; }
+  }
+  return result;
 });
